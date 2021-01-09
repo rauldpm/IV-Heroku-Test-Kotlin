@@ -14,28 +14,34 @@ script:
 
 after_success: true
 
-before_deploy:
-    - git config --global user.email "builds@travis-ci.com"
-    - git config --global user.name "Travis CI"
-    - export GIT_TAG=$TRAVIS_BRANCH-v0.1.$TRAVIS_BUILD_NUMBER
-    - git tag $GIT_TAG -a -m "Generated tag from TravisCI for build $TRAVIS_BUILD_NUMBER"
-    - git push -q https://"$TOKEN_GH"@github.com/rauldpm/IV-Heroku-Test-Kotlin --tags
 
-deploy:
-    - provider: heroku 
-      token: "$TOKEN_HEROKU"
-      cleanup: true
-      app: test-iv-kotlin
-      on:
-        all_branches: true
 
-    - provider: releases
-      token: "$TOKEN_GH"
-      file: 
-        - app/build/libs/app.jar
-      cleanup: true
-      on:
-        branch: main
+jobs:
+    before_deploy:
+        - git config --global user.email "builds@travis-ci.com"
+        - git config --global user.name "Travis CI"
+        - export GIT_TAG=$TRAVIS_BRANCH-v0.1.$TRAVIS_BUILD_NUMBER
+        - git tag $GIT_TAG -a -m "Generated tag from TravisCI for build $TRAVIS_BUILD_NUMBER"
+        - git push -q https://"$TOKEN_GH"@github.com/rauldpm/IV-Heroku-Test-Kotlin --tags
+
+    - stage: Deploy heroku
+        deploy:
+            provider: heroku 
+            api_key: "$TOKEN_HEROKU"
+            cleanup: true
+            app: test-iv-kotlin
+            on:
+                all_branches: true
+
+    - stage: Deploy GH
+        deploy:
+            provider: releases
+            api_key: "$TOKEN_GH"
+            file: 
+                - app/build/libs/app.jar
+            cleanup: true
+            on:
+                branch: main
 
 
 
