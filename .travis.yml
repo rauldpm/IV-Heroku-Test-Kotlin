@@ -38,5 +38,6 @@ deploy:
         provider: heroku 
         cleanup: false
         api_key: "$TOKEN_HEROKU"
-        app: test-iv-kotlin
+        app: 
+            production: test-iv-kotlin
 
