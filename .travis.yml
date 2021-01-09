@@ -12,7 +12,6 @@ services:
 script:
     - docker run -t -v $TRAVIS_BUILD_DIR:/test rauldpm/test-iv-kotlin
 
-after_success: true
 
 #before_deploy:
 #    if ! [[ $TRAVIS_TAG ]]; then
@@ -37,10 +36,7 @@ deploy:
 
     -
         provider: heroku 
-        skip_cleanup: true
+        cleanup: false
         api_key: "$TOKEN_HEROKU"
         app: test-iv-kotlin
-        on:
-            branch: master
-
 
