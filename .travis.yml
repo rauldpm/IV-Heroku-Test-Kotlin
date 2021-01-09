@@ -24,6 +24,7 @@ before_deploy:
 deploy:
     provider: releases
     api-key: "$TOKEN_GH"
-    file: $TRAVIS_BUILD_DIR/test/app/build/libs/app.jar
+    skip_cleanup: true
+    file: "app/build/libs/app.jar"
     on:
         branch: main
