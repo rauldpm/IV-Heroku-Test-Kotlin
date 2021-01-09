@@ -1,0 +1,13 @@
+
+# Especifica el SO y la distribución a usar
+arch: amd64
+os: linux
+dist: xenial
+
+# Especifica que se va a usar docker
+services:
+    - docker
+
+# Descarga la imagen y la ejecuta
+script:
+    - docker run -t -v $TRAVIS_BUILD_DIR:/test ghcr.io/rauldpm/test-iv-kotlin/test-iv-kotlin-con:latest
