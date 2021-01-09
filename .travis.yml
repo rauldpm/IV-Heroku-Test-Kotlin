@@ -14,26 +14,26 @@ script:
 
 after_success: true
 
-before_deploy:
-    if ! [[ $TRAVIS_TAG ]]; then
-        export TRAVIS_TAG="1.$TRAVIS_BUILD_NUMBER" &&
-        git config --local user.name "$USER_NAME" &&
-        git config --local user.email "$USER_EMAIL" &&
-        git tag "$TRAVIS_TAG";
-    fi
+#before_deploy:
+#    if ! [[ $TRAVIS_TAG ]]; then
+#        export TRAVIS_TAG="1.$TRAVIS_BUILD_NUMBER" &&
+#        git config --local user.name "$USER_NAME" &&
+#        git config --local user.email "$USER_EMAIL" &&
+#        git tag "$TRAVIS_TAG";
+#    fi
 
 
 deploy:
-    - 
-        provider: releases
-        tag_name: $TRAVIS_TAG
-        name: $TRAVIS_TAG
-        cleanup: false
-        api_key: "$TOKEN_GH"
-        overwrite: true
-        file: app/build/libs/app.jar
-        on:
-            branch: main
+    #- 
+    #    provider: releases
+    #    tag_name: $TRAVIS_TAG
+    #    name: $TRAVIS_TAG
+    #    cleanup: false
+    #    api_key: "$TOKEN_GH"
+    #    overwrite: true
+    #    file: app/build/libs/app.jar
+    #    on:
+    #        branch: main
 
     -
         provider: heroku 
