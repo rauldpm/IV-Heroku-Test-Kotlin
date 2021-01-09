@@ -26,4 +26,4 @@ ENV PATH $PATH:/opt/gradle-$GRADLE_VERSION/bin
 WORKDIR /test
 
 # Establece la accion a realizar al ejecutar docker
-CMD gradle build test
+CMD gradle build test 
