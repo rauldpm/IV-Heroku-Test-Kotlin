@@ -23,7 +23,7 @@ before_deploy:
 
 deploy:
     - provider: releases
-      api-key: "$TOKEN_GH"
+      api_key: "$TOKEN_GH"
       file: 
         - app/build/libs/app.jar
       cleanup: true
@@ -32,6 +32,8 @@ deploy:
 
 
     - provider: heroku 
-      api-key: "$TOKEN_HEROKU"
+      api_key: "$TOKEN_HEROKU"
       cleanup: true
       app: test-iv-kotlin
+      on:
+        branch: release 
