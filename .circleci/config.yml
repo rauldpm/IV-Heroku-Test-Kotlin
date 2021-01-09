@@ -1,0 +1,19 @@
+
+# Fichero configuración Circle-CI
+
+version: 2.1
+
+# Representa la lista de trabajos a ejecutarse
+jobs:
+    build:
+        # Especifica el uso del contenedor
+        docker:
+            - image: ghcr.io/rauldpm/test-iv-kotlin/test-iv-kotlin-con:latest
+        # Especifica las acciones a realizar
+        steps:
+            # Clona el repositorio en local
+            - checkout
+            # Comandos a ejecutar
+            - run:
+                # Ejecuta los test
+                command: gradle test
