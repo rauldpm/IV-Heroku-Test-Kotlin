@@ -1,11 +1,11 @@
 
-name: GHRC 
+name: GHCR 
 
 # Salta cuando hay un push a la rama master
 on:
   push:
     branches:
-      - master
+      - main
 
 # Trabajos a realizar
 jobs:
