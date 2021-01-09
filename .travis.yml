@@ -21,25 +21,24 @@ before_deploy:
     - git tag $GIT_TAG -a -m "Generated tag from TravisCI for build $TRAVIS_BUILD_NUMBER"
     - git push -q https://"$TOKEN_GH"@github.com/rauldpm/IV-Heroku-Test-Kotlin --tags
 
-jobs:
-    include:
-        - deploy:
-            provider: heroku 
-            api_key: "$TOKEN_HEROKU"
-            cleanup: true
-            app: test-iv-kotlin
-            on:
-                all_branches: true
 
-    
-        - deploy:
-            provider: releases
-            api_key: "$TOKEN_GH"
-            file: 
-                - app/build/libs/app.jar
-            cleanup: true
-            on:
-                branch: main
+deploy:
+    -
+        provider: heroku 
+        api_key: "$TOKEN_HEROKU"
+        cleanup: true
+        app: test-iv-kotlin
+        on:
+            all_branches: true
+
+   # - 
+   #     provider: releases
+   #     api_key: "$TOKEN_GH"
+   #     file: 
+   #         - app/build/libs/app.jar
+   #     cleanup: true
+   #     on:
+   #         branch: main
 
 
 
