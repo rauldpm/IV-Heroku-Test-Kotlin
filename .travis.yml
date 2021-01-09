@@ -1,8 +1,8 @@
-
 # Especifica el SO y la distribución a usar
 arch: amd64
 os: linux
 dist: xenial
+
 
 # Especifica que se va a usar docker
 services:
@@ -22,9 +22,8 @@ before_deploy:
     - git push -q https://"$TOKEN_GH"@github.com/rauldpm/IV-Heroku-Test-Kotlin --tags
 
 jobs:
-
-    - stage: Deploy heroku
-        deploy:
+    include:
+        - deploy:
             provider: heroku 
             api_key: "$TOKEN_HEROKU"
             cleanup: true
@@ -32,8 +31,8 @@ jobs:
             on:
                 all_branches: true
 
-    - stage: Deploy GH
-        deploy:
+    
+        - deploy:
             provider: releases
             api_key: "$TOKEN_GH"
             file: 
