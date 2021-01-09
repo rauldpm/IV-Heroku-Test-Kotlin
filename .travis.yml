@@ -10,4 +10,4 @@ services:
 
 # Descarga la imagen y la ejecuta
 script:
-    - docker run -t -v $TRAVIS_BUILD_DIR:/test ghcr.io/rauldpm/test-iv-kotlin/test-iv-kotlin-con:latest
+    - docker run -t -v $TRAVIS_BUILD_DIR:/test ghcr.io/rauldpm/test-iv-kotlin/test-iv-kotlin-con:latest 
