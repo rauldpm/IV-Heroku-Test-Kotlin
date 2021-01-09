@@ -6,11 +6,12 @@
  * User Manual available at https://docs.gradle.org/6.8-rc-4/userguide/building_java_projects.html
  */
 
-plugins {
-    // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
-    id("org.jetbrains.kotlin.jvm") version "1.4.20"
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
-    // Apply the application plugin to add support for building a CLI application in Java.
+
+plugins {
+    id("org.jetbrains.kotlin.jvm") version "1.4.20"
+    id("com.github.johnrengelman.shadow") version "6.1.0"
     application
 }
 
@@ -35,11 +36,27 @@ dependencies {
     // Use the Kotlin JUnit integration.
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
 
+    // Framework web
     implementation("io.ktor:ktor-server-netty:1.4.3")
     
 }
 
 application {
     // Define the main class for the application.
-    mainClass.set("Heroku.Kotlin.MainKt")
+    //mainClass.set("Heroku.Kotlin.MainKt") // Este metodo es actualizado pero no compatible con shadowJar fatJar
+    mainClassName = "Heroku.Kotlin.MainKt" // Este metodo es deprecado pero necesario para shadowJar fatJar
+}
+
+// Para crear el manifiesto del .jar
+tasks.jar {
+    manifest {
+        attributes (
+            "Main-Class" to "Heroku.Kotlin.MainKt"
+        )
+    }
+}
+
+// Para establecer un nombre personalizado al .jar
+tasks.withType<ShadowJar>{ 
+    archiveFileName.set("app.jar")
 }
