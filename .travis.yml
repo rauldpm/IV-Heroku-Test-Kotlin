@@ -11,3 +11,19 @@ services:
 # Descarga la imagen y la ejecuta
 script:
     - docker run -t -v $TRAVIS_BUILD_DIR:/test rauldpm/test-iv-kotlin
+
+after_success: true
+
+before_deploy:
+    - git config --global user.email "builds@travis-ci.com"
+    - git config --global user.name "Travis CI"
+    - export GIT_TAG=$TRAVIS_BRANCH-v0.1.$TRAVIS_BUILD_NUMBER
+    - git tag $GIT_TAG -a -m "Generated tag from TravisCI for build $TRAVIS_BUILD_NUMBER"
+    - git push -q https://${{TRAVIS_DEPLOY}}@github.com/rauldpm/IV-Heroku-Test-Kotlin --tags
+  
+deploy:
+    provider: releases
+    api-key: ${{TRAVIS_DEPLOY}}
+    file: "app/build/libs/app.jar"
+    on:
+        branch: main
