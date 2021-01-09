@@ -1,2 +1,3 @@
 # IV-Heroku-Test-Kotlin
-Repositorio que alberga una mini aplicacion en Kotlin para un despliegue minimo en Heroku
+
+Repositorio que alberga una mini aplicación en Kotlin para un despliegue mínimo en Heroku.
