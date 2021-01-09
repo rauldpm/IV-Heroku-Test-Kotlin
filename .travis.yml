@@ -39,5 +39,5 @@ deploy:
         cleanup: false
         api_key: "$TOKEN_HEROKU"
         app: 
-            production: test-iv-kotlin
+            production: test-iv-kotlin-production
 
