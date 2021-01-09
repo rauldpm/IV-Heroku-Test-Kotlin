@@ -10,4 +10,4 @@ services:
 
 # Descarga la imagen y la ejecuta
 script:
-    - docker run -t -v $TRAVIS_BUILD_DIR:/test docker pull rauldpm/test-iv-kotlin
+    - docker run -t -v $TRAVIS_BUILD_DIR:/test rauldpm/test-iv-kotlin
