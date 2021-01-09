@@ -36,4 +36,4 @@ deploy:
       cleanup: true
       app: test-iv-kotlin
       on:
-        branch: release 
+        all_branches: true
