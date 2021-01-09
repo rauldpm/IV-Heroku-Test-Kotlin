@@ -12,6 +12,10 @@ import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import io.ktor.request.*
 
+fun main() {
+    val port = System.getenv("PORT")?.toInt() ?: 23567
+    embeddedServer(Netty, port, watchPaths = listOf("MainKt"), module = Application::module).start()
+}
 
 fun Application.module() {
     install(DefaultHeaders)
@@ -43,6 +47,5 @@ fun Route.app() {
     }
 }
 
-fun main() {
-    embeddedServer(Netty, 8080, watchPaths = listOf("MainKt"), module = Application::module).start()
-}
+
+
