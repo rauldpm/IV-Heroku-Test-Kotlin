@@ -36,15 +36,30 @@ dependencies {
     // Use the Kotlin JUnit integration.
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
 
+    // Unit5
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.7.0")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
+
     // Framework web
     implementation("io.ktor:ktor-server-netty:1.4.3")
-    
+    testImplementation("io.ktor:ktor-server-test-host:1.4.3")
 }
 
 application {
     // Define the main class for the application.
     //mainClass.set("Heroku.Kotlin.MainKt") // Este metodo es actualizado pero no compatible con shadowJar fatJar
     mainClassName = "Heroku.Kotlin.MainKt" // Este metodo es deprecado pero necesario para shadowJar fatJar
+}
+
+tasks {
+    test {
+        useJUnitPlatform()
+        testLogging {
+            showStandardStreams = true
+            events("passed", "failed", "skipped")
+        }
+    }
 }
 
 // Para crear el manifiesto del .jar
