@@ -22,10 +22,16 @@ before_deploy:
     - git push -q https://"$TOKEN_GH"@github.com/rauldpm/IV-Heroku-Test-Kotlin --tags
 
 deploy:
-    provider: releases
-    api-key: "$TOKEN_GH"
-    file: 
+    - provider: releases
+      api-key: "$TOKEN_GH"
+      file: 
         - app/build/libs/app.jar
-    cleanup: true
-    on:
+      cleanup: true
+      on:
         branch: main
+
+
+    - provider: heroku 
+      api-key: "$TOKEN_HEROKU"
+      cleanup: true
+      app: test-iv-kotlin
