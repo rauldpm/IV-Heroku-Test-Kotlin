@@ -2,7 +2,7 @@
 arch: amd64
 os: linux
 dist: xenial
-
+language: java
 
 # Especifica que se va a usar docker
 services:
@@ -15,30 +15,31 @@ script:
 after_success: true
 
 before_deploy:
-    - git config --global user.email "builds@travis-ci.com"
-    - git config --global user.name "Travis CI"
-    - export GIT_TAG=$TRAVIS_BRANCH-v0.1.$TRAVIS_BUILD_NUMBER
-    - git tag $GIT_TAG -a -m "Generated tag from TravisCI for build $TRAVIS_BUILD_NUMBER"
-    - git push -q https://"$TOKEN_GH"@github.com/rauldpm/IV-Heroku-Test-Kotlin --tags
+    if ! [[ $TRAVIS_TAG ]]; then
+        export TRAVIS_TAG = "1.$TRAVIS_BUILD_NUMBER" &&
+        git config --local user.name "$USER_NAME" &&
+        git config --local user.email "$USER_EMAIL" &&
+        git tag "$TRAVIS_TAG"
+    fi
 
 
 deploy:
+    - 
+        provider: releases
+        tag_name: $TRAVIS_TAG
+        name: $TRAVIS_TAG
+        cleanup: true
+        api_key: "$TOKEN_GH"
+        overwrite: true
+        file: app/build/libs/app.jar
+        on:
+            branch: main
+
     -
         provider: heroku 
         api_key: "$TOKEN_HEROKU"
-        cleanup: true
         app: test-iv-kotlin
         on:
             all_branches: true
-
-   # - 
-   #     provider: releases
-   #     api_key: "$TOKEN_GH"
-   #     file: 
-   #         - app/build/libs/app.jar
-   #     cleanup: true
-   #     on:
-   #         branch: main
-
 
 
