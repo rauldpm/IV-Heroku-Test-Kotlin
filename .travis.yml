@@ -41,7 +41,6 @@ deploy:
         api_key: "$TOKEN_HEROKU"
         app: test-iv-kotlin
         on:
-            repo: rauldpm/IV-Heroku-Test-Kotlin
-            #all_branches: true
+            branch: master
 
 
