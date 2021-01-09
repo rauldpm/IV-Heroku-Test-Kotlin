@@ -37,6 +37,7 @@ deploy:
 
     -
         provider: heroku 
+        skip_cleanup: true
         api_key: "$TOKEN_HEROKU"
         app: test-iv-kotlin
         file: app/build/libs/app.jar
