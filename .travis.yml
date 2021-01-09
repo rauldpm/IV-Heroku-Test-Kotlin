@@ -26,6 +26,6 @@ deploy:
     api-key: "$TOKEN_GH"
     file: 
         - app/build/libs/app.jar
-    skip_cleanup: true
+    cleanup: true
     on:
         branch: main
