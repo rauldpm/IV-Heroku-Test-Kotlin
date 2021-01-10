@@ -22,11 +22,8 @@ jobs:
         - name: Prepara despliegue
           run: heroku plugins:install java
 
-        - name: Genera ficheros
+        - name: Genera ficheros y comprueba test
           run: gradle build
-
-        - name: Realiza test
-          run: gradle test
 
         - name: Deploy
           env:
