@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v2
       - 
         name: Login to Heroku
-        run: (echo "${{secrets.HEROKU_EMAIL}}"; sleep 1; echo "${{ secrets.HEROKU_TOKEN }}"; ) | heroku login -i
+        run: (echo "${{ secrets.HEROKU_EMAIL }}"; echo "${{ secrets.HEROKU_TOKEN }}"; ) | heroku login -i
 
       # Build and Deploy
       - 
