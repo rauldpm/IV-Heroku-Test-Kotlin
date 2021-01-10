@@ -12,6 +12,7 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 plugins {
     id("org.jetbrains.kotlin.jvm") version "1.4.20"
     id("com.github.johnrengelman.shadow") version "6.1.0"
+    id("com.heroku.sdk.heroku-gradle") version "2.0.0"
     application
 }
 
@@ -50,6 +51,14 @@ application {
     // Define the main class for the application.
     //mainClass.set("Heroku.Kotlin.MainKt") // Este metodo es actualizado pero no compatible con shadowJar fatJar
     mainClassName = "Heroku.Kotlin.MainKt" // Este metodo es deprecado pero necesario para shadowJar fatJar
+}
+
+heroku {
+    setAppName("test-iv-kotlin")
+    setIncludeBuildDir(false)
+    setJdkVersion("8")
+    var list = listOf<String>("app/build/libs/app.jar")
+    setIncludes(list)
 }
 
 tasks {
