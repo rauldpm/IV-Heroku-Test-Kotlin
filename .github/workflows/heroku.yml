@@ -1,0 +1,31 @@
+
+name: Deploy Heroku
+
+on:
+  push:
+    branches:
+        - main
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+
+    steps:
+
+      - 
+        name: Checkout
+        uses: actions/checkout@v2
+
+      # Realiza el login 
+      - 
+        name: Login to Heroku
+        env:
+            HEROKU_TOKEN: ${{ secrests.HEROKU_TOKEN }}
+        RUN: heroku login
+
+      # Build and Deploy
+      - 
+        name: Build and Deploy
+        run: "gradle build deployHeroku"
