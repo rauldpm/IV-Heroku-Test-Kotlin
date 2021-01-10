@@ -19,10 +19,12 @@ jobs:
       - 
         name: Login to Heroku
         env:
-            HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: heroku login
+            HEROKU_TOKEN: ${{ secrets.HEROKU_TOKEN }}
+        run: heroku login -i
 
       # Build and Deploy
       - 
         name: Build and Deploy
+        env:
+            HEROKU_TOKEN: ${{ secrets.HEROKU_TOKEN }}
         run: "gradle build deployHeroku"
