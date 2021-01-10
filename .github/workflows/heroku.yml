@@ -15,11 +15,11 @@ jobs:
     steps:
         - uses: actions/checkout@v2
         - name: Login
-            env:
-                heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-            run: heroku login
+          env:
+            heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          run: heroku login
 
         - name: Deploy
-            env:
-                heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-            run: "gradle build deployHeroku"
+          env:
+            heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          run: "gradle build deployHeroku"
