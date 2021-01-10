@@ -22,6 +22,9 @@ jobs:
         - name: Prepara despliegue
           run: heroku plugins:install java
 
+        - name: Genera ficheros
+          run: gradle build
+
         - name: Deploy
           env:
             heroku_api_key: ${{secrets.HEROKU_API_KEY}}
