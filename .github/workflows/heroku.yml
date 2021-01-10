@@ -22,7 +22,7 @@ jobs:
       - 
         name: Login to Heroku
         env:
-            HEROKU_TOKEN: ${{ secrests.HEROKU_TOKEN }}
+            HEROKU_TOKEN: ${{ secrets.HEROKU_TOKEN }}
         run: heroku login
 
       # Build and Deploy
