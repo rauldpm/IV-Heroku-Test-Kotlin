@@ -1,5 +1,5 @@
 
-name: heroku
+name: Deploy To Heroku
 
 on:
   push:
@@ -7,22 +7,14 @@ on:
         - main
 
 jobs:
-  deploy:
+  build:
 
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
 
     steps:
-
-      # Realiza el login 
-      - uses: actions/checkout@v1
-      - 
-        name: Login to Heroku
-        env: 
-            HEROKU_API_KEY: ${{ secrets.HEROKU_KEY }}
+      - uses: actions/checkout@v2
+      - name: Login
+        env:
+            heroku_api_key: ${{secrets.HEROKU_API_KEY}}
         run: heroku login
- 
-      # Build and Deploy
-      #- 
-      #  name: Build and Deploy
-      #  run: "gradle build deployHeroku"
