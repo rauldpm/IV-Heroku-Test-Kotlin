@@ -22,7 +22,7 @@ script:
 #    fi
 
 
-deploy:
+#deploy:
     #- 
     #    provider: releases
     #    tag_name: $TRAVIS_TAG
@@ -34,10 +34,11 @@ deploy:
     #    on:
     #        branch: main
 
-    -
-        provider: heroku 
-        cleanup: false
-        api_key: "$TOKEN_HEROKU"
-        app: 
-            production: test-iv-kotlin-production
+    #-
+    #    provider: heroku 
+    #    cleanup: false
+    #    api_key: "$TOKEN_HEROKU"
+    #    app: test-iv-kotlin
+    #    on: branch: master
+        
 
