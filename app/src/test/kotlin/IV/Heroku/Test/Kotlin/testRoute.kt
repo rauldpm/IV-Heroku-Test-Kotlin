@@ -17,7 +17,7 @@ class TestRoute {
         with (
             handleRequest(HttpMethod.Get, "/")
         ) {
-            assertEquals(response.content, "Desplsiegue funcionando !!")
+            assertEquals(response.content, "Despliegue funcionando !!")
         }
     }
 
