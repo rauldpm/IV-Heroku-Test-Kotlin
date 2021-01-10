@@ -22,4 +22,4 @@ jobs:
         - name: Deploy
           env:
             heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          run: "gradle build deployHeroku"
+          run: "ls && gradle build deployHeroku"
