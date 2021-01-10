@@ -25,6 +25,9 @@ jobs:
         - name: Genera ficheros
           run: gradle build
 
+        - name: Realiza test
+          run: gradle test
+
         - name: Deploy
           env:
             HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
