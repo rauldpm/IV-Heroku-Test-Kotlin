@@ -20,7 +20,7 @@ jobs:
           run: heroku login
 
         - name: Prepara despliegue
-            run: heroku plugins:install java
+          run: heroku plugins:install java
 
         - name: Deploy
           env:
