@@ -1,5 +1,5 @@
 
-name: Deploy Heroku
+name: heroku
 
 on:
   push:
@@ -23,7 +23,7 @@ jobs:
         name: Login to Heroku
         env:
             HEROKU_TOKEN: ${{ secrests.HEROKU_TOKEN }}
-        RUN: heroku login
+        run: heroku login
 
       # Build and Deploy
       - 
